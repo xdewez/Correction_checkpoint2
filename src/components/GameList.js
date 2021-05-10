@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Game from "./Game";
 
 export default function GameList() {
     const [gameList, setGameList] = useState([]);
@@ -17,8 +18,9 @@ export default function GameList() {
                 .map((el) => {
                     return (
                         <div>
-                            <h3>{el.name}</h3>
-                            <h4>{el.rating}</h4>
+                            <Game name={el.name} 
+                            rating={el.rating}
+                            img={el.background_image}/>
                         </div>
                     )
                 })}
