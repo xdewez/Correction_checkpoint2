@@ -4,6 +4,7 @@ import Game from "./Game";
 
 export default function GameList() {
     const [gameList, setGameList] = useState([]);
+    const [rating,setRating] = useState (false);
 
     useEffect(() => {
         axios
@@ -11,10 +12,14 @@ export default function GameList() {
             .then((response) => response.data)
             .then((data) => setGameList(data));
     }, [])
+    function handleOnClick() {
+        setRating(!rating);
+    }
 
     return (
         <div>
-            {gameList
+            {gameList 
+                .filter((el) => !rating || el.rating > 4.5 )
                 .map((el) => {
                     return (
                         <div>
@@ -24,6 +29,9 @@ export default function GameList() {
                         </div>
                     )
                 })}
-        </div>
+                <button onClick={handleOnClick}>
+                   fitlre 
+                </button>
+        </div>  
     )
 }
